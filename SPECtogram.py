@@ -115,6 +115,7 @@ def gimmeDaSPECtogram(input, window_size_ms=30.0, stride_ms=10.0, pre_emphasis=0
     plt.show()
     """
 
+
     """
     plt.subplot(312)
     filter_banks = do_mfcc(filter_banks, upper_frequency_limit=4000, lower_frequency_limit=0, dct_coefficient_count=12)
@@ -132,22 +133,24 @@ def gimmeDaSPECtogram(input, window_size_ms=30.0, stride_ms=10.0, pre_emphasis=0
     plt.show()
     """
 
+    #filter_banks = do_mfcc(filter_banks, upper_frequency_limit=4000, lower_frequency_limit=0, dct_coefficient_count=12)
 
 
-    #plt.subplot(312)
+    plt.subplot(312)
     filter_banks = do_mfcc(filter_banks, upper_frequency_limit=4000, lower_frequency_limit=0, dct_coefficient_count=12)
-    #print(filter_banks.shape)
-    ## filter_banks -= (numpy.mean(filter_banks, axis=0) + 1e-8)
-    #plt.imshow(filter_banks.T, cmap=plt.cm.jet, aspect='auto')
-    #plt.xticks(numpy.arange(0, (filter_banks.T).shape[1],
-    #                        int((filter_banks.T).shape[1] / 4)),
-    #           ['0s', '0.25s', '0.5s', '0.75s', '1s'])
-    #plt.yticks(numpy.arange(1, (filter_banks.T).shape[0],
-    #                        int((filter_banks.T).shape[0] / 4)),
-    #           ['0', '3', '6', '9', '12'])
-    #ax = plt.gca()
-    #ax.invert_yaxis()
-    #plt.show()
+    print(filter_banks.shape)
+    # filter_banks -= (numpy.mean(filter_banks, axis=0) + 1e-8)
+    plt.imshow(filter_banks.T, cmap=plt.cm.jet, aspect='auto')
+    plt.xticks(numpy.arange(0, (filter_banks.T).shape[1],
+                            int((filter_banks.T).shape[1] / 4)),
+               ['0s', '0.25s', '0.5s', '0.75s', '1s'])
+    plt.yticks(numpy.arange(1, (filter_banks.T).shape[0],
+                            int((filter_banks.T).shape[0] / 4)),
+               ['0', '3', '6', '9', '12'])
+    ax = plt.gca()
+    ax.invert_yaxis()
+    plt.show()
+
 
     mfccs_graph = filter_banks.T
 

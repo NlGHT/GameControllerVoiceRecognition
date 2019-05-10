@@ -12,12 +12,12 @@ feature_dim_2 = 12
 channel = 1
 
 
-json_file = open('model_3.json', 'r')
+json_file = open('model_4.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 # load weights into new model
-loaded_model.load_weights("model_3.h5")
+loaded_model.load_weights("model_4.h5")
 print("Loaded model from disk")
 
 # Input: Folder Path
@@ -44,5 +44,17 @@ def predict(filepath, model):
     ]
 
 print(predict("data/down/0ba018fc_nohash_2.wav", loaded_model))
-print(predict("data/go/37dca74f_nohash_1.wav", loaded_model))
+print(predict("MeDown.wav", loaded_model))
+print(predict("data/down/0c540988_nohash_0.wav", loaded_model))
+print(predict("data/two/0c2d2ffa_nohash_0.wav", loaded_model))
+print(predict("MeTwo.wav", loaded_model))
+print(predict("data/two/0c2d2ffa_nohash_0.wav", loaded_model))
+print(predict("data/four/0ac15fe9_nohash_0.wav", loaded_model))
 print(predict("MeFour.wav", loaded_model))
+print(predict("data/four/0bfec55f_nohash_0.wav", loaded_model))
+print(predict("data/right/0d393936_nohash_0.wav", loaded_model))
+print(predict("MeRight.wav", loaded_model))
+print(predict("data/right/0d53e045_nohash_0.wav", loaded_model))
+print(predict("data/left/0d82fd99_nohash_2.wav", loaded_model))
+print(predict("MeLeft.wav", loaded_model))
+print(predict("data/left/0d6d7360_nohash_2.wav", loaded_model))
