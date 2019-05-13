@@ -1,3 +1,6 @@
+
+# Sourced code from https://github.com/chasingbob/keras-visuals
+
 from keras.callbacks import Callback
 import matplotlib.pyplot as plt    
 import matplotlib.patches as mpatches  
