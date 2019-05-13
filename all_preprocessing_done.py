@@ -15,7 +15,7 @@ from keras_visual_callbacks import ConfusionMatrixPlotter
 feature_dim_2 = 12
 
 # Save data to array file first
-#save_data_to_array(max_len=feature_dim_2)
+save_data_to_array(max_len=feature_dim_2)
 
 # # Loading train set and test set
 X_train, X_test, y_train, y_test = get_train_test()
@@ -79,10 +79,10 @@ model.fit(X_train, y_train_hot, batch_size=batch_size, epochs=epochs, verbose=ve
 
 # serialize model to JSON
 model_json = model.to_json()
-with open("model_4.json", "w") as json_file:
+with open("model_5.json", "w") as json_file:
     json_file.write(model_json)
 # serialize weights to HDF5
-model.save_weights("model_4.h5")
+model.save_weights("model_5.h5")
 print("Saved model to disk")
 
 
@@ -125,7 +125,7 @@ def freeze_session(session, keep_var_names=None, output_names=None, clear_device
 
 frozen_graph = freeze_session(K.get_session(), output_names=[out.op.name for out in model.outputs])
 
-tf.train.write_graph(frozen_graph, "/home/night/PycharmProjects/APMiniProject/", "my_model_4.pb", as_text=False)
+tf.train.write_graph(frozen_graph, "/home/night/PycharmProjects/APMiniProject/", "my_model_5.pb", as_text=False)
 
 
 

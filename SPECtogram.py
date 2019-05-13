@@ -4,6 +4,21 @@ import matplotlib.pyplot as plt
 #from scipy.fftpack import dct
 from mfcc_bro import do_mfcc
 
+def medianFilter(signal, searchDistance=2):
+    minVal = numpy.min(signal)
+    signal = numpy.add(signal, minVal)
+    signalCopy = signal.copy()
+
+    for i in range(searchDistance, signal.shape[0]-searchDistance):
+        kernelExtract = []
+        for kernelPart in range(i-searchDistance, i+searchDistance):
+            kernelExtract.append(signal[kernelPart])
+
+        signalCopy[i] = numpy.median(kernelExtract)
+
+    return numpy.add(signalCopy, -minVal)
+
+
 def gimmeDaSPECtogram(input, window_size_ms=30.0, stride_ms=10.0, pre_emphasis=0.97, NFFT=512, triangular_filters=40, magnitude_squared=False, name=None):
     #print(input)
     sample_rate, signal = scipy.io.wavfile.read(input)  # File assumed to be in the same directory
@@ -58,8 +73,9 @@ def gimmeDaSPECtogram(input, window_size_ms=30.0, stride_ms=10.0, pre_emphasis=0
     print(frame_length) #480k, wth?
     print(frame_step) #160k 
     print(num_frames) #3 motherfucking frames bois, is it frames per window?
-    
     """
+
+    #medianFilteredSignal = medianFilter(emphasized_signal)
 
 
     pad_signal_length = num_frames * stride_ms + window_size_ms
@@ -133,9 +149,9 @@ def gimmeDaSPECtogram(input, window_size_ms=30.0, stride_ms=10.0, pre_emphasis=0
     plt.show()
     """
 
-    #filter_banks = do_mfcc(filter_banks, upper_frequency_limit=4000, lower_frequency_limit=0, dct_coefficient_count=12)
+    filter_banks = do_mfcc(filter_banks, upper_frequency_limit=4000, lower_frequency_limit=0, dct_coefficient_count=12)
 
-
+    """
     plt.subplot(312)
     filter_banks = do_mfcc(filter_banks, upper_frequency_limit=4000, lower_frequency_limit=0, dct_coefficient_count=12)
     print(filter_banks.shape)
@@ -150,6 +166,7 @@ def gimmeDaSPECtogram(input, window_size_ms=30.0, stride_ms=10.0, pre_emphasis=0
     ax = plt.gca()
     ax.invert_yaxis()
     plt.show()
+    """
 
 
     mfccs_graph = filter_banks.T
