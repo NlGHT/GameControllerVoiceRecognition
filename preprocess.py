@@ -58,7 +58,6 @@ def save_data_to_array(path=DATA_PATH, max_len=12):
         np.save(label + '.npy', mfcc_vectors)
 
 # Run this to prepare data for tensorflow feeding
-#save_data_to_array()
 
 
 def get_train_test(split_ratio=0.92, random_state=42):
@@ -84,7 +83,9 @@ def get_train_test(split_ratio=0.92, random_state=42):
 
     assert X.shape[0] == len(y)
 
-    return train_test_split(X, y, test_size=(1 - split_ratio), random_state=random_state, shuffle=True)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=(1 - split_ratio), random_state=random_state, shuffle=True)
+
+    return X_train, X_test, y_train, y_test
 
 
 def prepare_dataset(path=DATA_PATH):
